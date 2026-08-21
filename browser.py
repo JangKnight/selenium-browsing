@@ -45,39 +45,7 @@ if opt1 and opt1 == "login":
     home_page = driver.find_element(By.TAG_NAME, "body")
     # print(home_page.get_attribute("innerHTML"))
 
-    # TESTED USING WECHALL's SITE
 
-    challenges_tab = home_page.find_element(
-        By.CSS_SELECTOR, '#wc_menu a[href="/challs"]'
-    )
-    # print(challenges_tab.get_attribute("outerHTML"))
-    challenges_tab.click()
-
-    chall_page = driver.find_element(By.TAG_NAME, "body")
-    desired_chall = chall_page.find_element(
-        By.CSS_SELECTOR,
-        '#page .wc_chall_table a[href="/challenge/training/programming1/index.php"]',
-    )
-    # print(desired_chall.get_attribute("outerHTML"))
-    desired_chall.click()
-
-    driver.find_element(
-        By.CSS_SELECTOR, '#page .box .box_c a[href="index.php?action=request"]'
-    ).click()
-    msg_page = driver.find_element(By.TAG_NAME, "body").get_attribute("outerHTML")
-    msg = driver.find_element(By.TAG_NAME, "body").get_attribute("innerHTML")
-
-    print("\nCookies\n------------------")
-    ctf_session = requests.Session()
-    for cookie in driver.get_cookies():
-        ctf_session.cookies.set(cookie["name"], cookie["value"])
-        print(cookie)
-    print("------------------")
-
-    res = ctf_session.post(
-        f"http://www.wechall.net/challenge/training/programming1/index.php?answer={msg}"
-    )
-    print(res.text)
 
 
 done = False
